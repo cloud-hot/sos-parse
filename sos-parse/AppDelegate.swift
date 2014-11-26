@@ -13,10 +13,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Parse.setApplicationId("AU6FpsErtGbMMbCiQha0eHO5Rd9jUoahgXZpaWtq", clientKey: "f2OSvwStllZrlcUknYXvbc3SluaYi3kp2tC3C9Vy")
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+        let logInviewController: logInController = storyBoard.instantiateViewControllerWithIdentifier("login") as logInController
+        let homeviewController: homeViewController = storyBoard.instantiateViewControllerWithIdentifier("home") as homeViewController
+        
+        setupTabSubview(homeviewController)
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        if let user = PFUser.currentUser() {
+            // Present wall straight-away
+            self.window!.rootViewController = homeviewController
+        } else {
+            // Go to the welcome screen and have them log in or create an account.
+            self.window!.rootViewController = logInviewController
+        }
+
+        self.window!.makeKeyAndVisible()
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            // do some task
+            self.setupTestData()
+//            dispatch_async(dispatch_get_main_queue()) {
+                // update some UI
+//            }
+        }
 
         return true
     }
@@ -42,7 +67,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func setupTabSubview(homeviewController: homeViewController) {
+        let eventviewController: eventTableViewController = eventTableViewController(className: "Event")
+        eventviewController.title = "事件";
+        eventviewController.pullToRefreshEnabled = true;
+        eventviewController.paginationEnabled = false;
+        
+        let eventnavgviewController: UINavigationController = UINavigationController(rootViewController:eventviewController)
+        
+        var viewcontrollers = homeviewController.viewControllers?
+        
+        viewcontrollers!.append(eventnavgviewController)
+        homeviewController.setViewControllers(viewcontrollers!, animated: true)
+    }
 
-
+    func setupTestData() {
+        let todoTitles = [ "Build Parse",
+            "Make everything awesome",
+            "Go out for the longest run",
+            "Do more stuff",
+            "Conquer the world",
+            "Build a house",
+            "Grow a tree",
+            "Be awesome",
+            "Setup an app",
+            "Do stuff",
+            "Buy groceries",
+            "Wash clothes" ]
+    
+        var objects = [PFObject]()
+        
+        let query = PFQuery(className: "Event")
+        let todos = query.findObjects()
+        if (todos.count == 0) {
+            var count = 0;
+            for title in todoTitles {
+                var priority = count % 3;
+                
+                var todo = PFObject(className:"Event")
+                todo["title"] = title;
+                todo["priority"] = priority;
+                objects.append(todo)
+                
+                count++;
+            }
+        }
+        if (objects.count != 0) {
+            PFObject.saveAll(objects)
+        }
+    }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class logInController: PFLogInViewController {
+class logInController: PFLogInViewController, PFLogInViewControllerDelegate {
 
     let logInLabel = UILabel()
     let signUpLabel = UILabel()
@@ -22,26 +22,32 @@ class logInController: PFLogInViewController {
         signUpLabel.text = "SOS parse"
         signUpLabel.sizeToFit()
         self.signUpController.signUpView.logo = signUpLabel
+        self.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
+        println("did login")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func logInViewControllerDidCancelLogIn(logInController: PFLogInViewController) {
+        println("did login cancel")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func signUpViewController(signUpController: PFSignUpViewController, didSignUpUser user: PFUser){
+        println("did signup")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func signUpViewControllerDidCancelLogIn(signUpController: PFSignUpViewController){
+        println("did signup cancel")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             // do some task
             self.setupTestData()
+            self.setupUserData()
 //            dispatch_async(dispatch_get_main_queue()) {
                 // update some UI
 //            }
@@ -83,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupTestData() {
-        let todoTitles = [ "Build Parse",
+        let events = [ "Build Parse",
             "Make everything awesome",
             "Go out for the longest run",
             "Do more stuff",
@@ -99,16 +100,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var objects = [PFObject]()
         
         let query = PFQuery(className: "Event")
-        let todos = query.findObjects()
-        if (todos.count == 0) {
+        let event = query.findObjects()
+        if (event.count == 0) {
             var count = 0;
-            for title in todoTitles {
+            for title in events {
                 var priority = count % 3;
                 
-                var todo = PFObject(className:"Event")
-                todo["title"] = title;
-                todo["priority"] = priority;
-                objects.append(todo)
+                var event_object = PFObject(className:"Event")
+                event_object["title"] = title;
+                event_object["priority"] = priority;
+                objects.append(event_object)
+                
+                count++;
+            }
+        }
+        if (objects.count != 0) {
+            PFObject.saveAll(objects)
+        }
+    }
+    
+    func setupUserData() {
+        let settings = [ "设置",
+            "退出" ]
+        
+        var objects = [PFObject]()
+        let currentUser = PFUser.currentUser()
+
+        let query = PFQuery(className: "Setting")
+        let setting = query.findObjects()
+        if (setting.count == 0) {
+            var count = 0;
+            for title in settings {
+                
+                var setting_object = PFObject(className:"Setting")
+                setting_object["title"] = title;
+                setting_object["user"] = currentUser
+                objects.append(setting_object)
                 
                 count++;
             }

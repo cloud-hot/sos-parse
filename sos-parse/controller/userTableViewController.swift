@@ -32,11 +32,7 @@ class userTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        let query = PFQuery(className: "Setting")
-        query.whereKey("user", equalTo: PFUser.currentUser())
-        setting = query.findObjects() as [PFObject]
-        NSLog("table count is \(setting.count).")
-        return setting.count
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,20 +44,19 @@ class userTableViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
+        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+        let loginController: logInController = storyBoard.instantiateViewControllerWithIdentifier("login") as logInController
+        
+        PFUser.logOut()
+        
+        self.presentViewController(loginController, animated: true, completion: nil)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         var cell = tableView.dequeueReusableCellWithIdentifier("userCell", forIndexPath: indexPath) as UITableViewCell
-
-        NSLog("index.row is \(indexPath.row), setting.count is \(self.setting.count).")
         
-        let item = self.setting[indexPath.row]
-        let user: PFUser = item["user"] as PFUser
-        cell.textLabel.text = user.objectId
-//        cell.textLabel.text = item["title"] as? String
-        NSLog("table text is \(cell.textLabel.text).")
+        cell.textLabel.text = "退出"
 
         return cell
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class logInController: PFLogInViewController, PFLogInViewControllerDelegate {
+class logInController: PFLogInViewController, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
 
     let logInLabel = UILabel()
     let signUpLabel = UILabel()
@@ -23,6 +23,7 @@ class logInController: PFLogInViewController, PFLogInViewControllerDelegate {
         signUpLabel.sizeToFit()
         self.signUpController.signUpView.logo = signUpLabel
         self.delegate = self
+        self.signUpController.delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +34,7 @@ class logInController: PFLogInViewController, PFLogInViewControllerDelegate {
 
     func logInViewController(logInController: PFLogInViewController, didLogInUser user: PFUser) {
         println("did login")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("login", sender: self)
     }
     
     func logInViewControllerDidCancelLogIn(logInController: PFLogInViewController) {
@@ -43,7 +44,8 @@ class logInController: PFLogInViewController, PFLogInViewControllerDelegate {
     
     func signUpViewController(signUpController: PFSignUpViewController, didSignUpUser user: PFUser){
         println("did signup")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: nil)
+        performSegueWithIdentifier("login", sender: self)
     }
     
     func signUpViewControllerDidCancelLogIn(signUpController: PFSignUpViewController){

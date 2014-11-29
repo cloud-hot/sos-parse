@@ -21,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let logInviewController: logInController = storyBoard.instantiateViewControllerWithIdentifier("login") as logInController
         let homeviewController: homeViewController = storyBoard.instantiateViewControllerWithIdentifier("home") as homeViewController
         
-        setupTabSubview(homeviewController)
-        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         if let user = PFUser.currentUser() {
@@ -38,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             // do some task
             self.setupTestData()
-            self.setupUserData()
 //            dispatch_async(dispatch_get_main_queue()) {
                 // update some UI
 //            }
@@ -67,20 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    func setupTabSubview(homeviewController: homeViewController) {
-        let eventviewController: eventTableViewController = eventTableViewController(className: "Event")
-        eventviewController.title = "事件";
-        eventviewController.pullToRefreshEnabled = true;
-        eventviewController.paginationEnabled = false;
-        
-        let eventnavgviewController: UINavigationController = UINavigationController(rootViewController:eventviewController)
-        
-        var viewcontrollers = homeviewController.viewControllers?
-        
-        viewcontrollers!.append(eventnavgviewController)
-        homeviewController.setViewControllers(viewcontrollers!, animated: true)
     }
 
     func setupTestData() {
@@ -114,35 +97,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 count++;
             }
         }
-        if (objects.count != 0) {
-            PFObject.saveAll(objects)
-        }
-    }
-    
-    func setupUserData() {
-        let settings = [ "设置",
-            "退出" ]
         
-        var objects = [PFObject]()
-        let currentUser = PFUser.currentUser()
-
-        let query = PFQuery(className: "Setting")
-        let setting = query.findObjects()
-        if (setting.count == 0) {
-            var count = 0;
-            for title in settings {
-                
-                var setting_object = PFObject(className:"Setting")
-                setting_object["title"] = title;
-                setting_object["user"] = currentUser
-                objects.append(setting_object)
-                
-                count++;
-            }
+        if let currentUser = PFUser.currentUser() {
+            var setting = PFObject(className:"Setting")
+            setting["user"] = currentUser
+            objects.append(setting)
         }
         if (objects.count != 0) {
             PFObject.saveAll(objects)
         }
     }
+
 }
 

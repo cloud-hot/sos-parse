@@ -72,16 +72,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="2TB-4M-lhg" kind="presentation" identifier="login" id="af2-BA-XUW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TiC-lu-myC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-552" y="-1139"/>
+            <point key="canvasLocation" x="-552" y="-1113"/>
         </scene>
         <!--friend-nc-->
         <scene sceneID="VMr-c0-gUf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y49-Ew-Kbe" userLabel="friend-nc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="好友" id="0Nv-XI-g3E"/>
+                    <tabBarItem key="tabBarItem" title="好友" image="setting" id="0Nv-XI-g3E"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QGS-QB-Xep">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -94,7 +97,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fm0-nC-2hT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="346" y="-407"/>
+            <point key="canvasLocation" x="362" y="-399"/>
         </scene>
         <!--home-tb-->
         <scene sceneID="eHy-Jn-85w">
@@ -119,7 +122,7 @@
         <scene sceneID="CVm-af-94Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q86-We-Lup" userLabel="user-nc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" id="3Vp-I7-GbO"/>
+                    <tabBarItem key="tabBarItem" title="我" image="device" id="3Vp-I7-GbO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AyP-ht-1sy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -135,4 +138,8 @@
             <point key="canvasLocation" x="346" y="-1139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="device" width="30" height="30"/>
+        <image name="setting" width="30" height="30"/>
+    </resources>
 </document>

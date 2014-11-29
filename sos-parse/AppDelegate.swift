@@ -97,12 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 count++;
             }
         }
-        
-        if let currentUser = PFUser.currentUser() {
-            var setting = PFObject(className:"Setting")
-            setting["user"] = currentUser
-            objects.append(setting)
-        }
+
         if (objects.count != 0) {
             PFObject.saveAll(objects)
         }

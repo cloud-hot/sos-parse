@@ -10,7 +10,7 @@ import UIKit
 
 class userTableViewController: UITableViewController {
 
-    var setting = [PFObject]()
+    var setting: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()

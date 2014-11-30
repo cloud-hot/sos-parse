@@ -17,6 +17,7 @@
 		4285402C1A1E222200F59991 /* eventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285402B1A1E222200F59991 /* eventTableViewController.swift */; };
 		4285402E1A1E223600F59991 /* friendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285402D1A1E223600F59991 /* friendsTableViewController.swift */; };
 		428540301A1E226C00F59991 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285402F1A1E226C00F59991 /* homeViewController.swift */; };
+		42B8F8651A2B567F0078F656 /* friendsAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B8F8641A2B567F0078F656 /* friendsAddTableViewController.swift */; };
 		4F561ABCDD11A9322EB5C87E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2654443C222948CE916611B4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		4285402D1A1E223600F59991 /* friendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = friendsTableViewController.swift; sourceTree = "<group>"; };
 		4285402F1A1E226C00F59991 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
 		429510311A18FB8200FF405A /* SOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		42B8F8641A2B567F0078F656 /* friendsAddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = friendsAddTableViewController.swift; sourceTree = "<group>"; };
 		7930DF9431EB1D9D0972CE5B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8BF621121A3D1C31B3C79F8B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 				4285402D1A1E223600F59991 /* friendsTableViewController.swift */,
 				4285402F1A1E226C00F59991 /* homeViewController.swift */,
 				423690761A217F6400414043 /* userTableViewController.swift */,
+				42B8F8641A2B567F0078F656 /* friendsAddTableViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B8F8651A2B567F0078F656 /* friendsAddTableViewController.swift in Sources */,
 				4285402C1A1E222200F59991 /* eventTableViewController.swift in Sources */,
 				426222591A18D28F00ADA33B /* loginViewController.swift in Sources */,
 				4285402E1A1E223600F59991 /* friendsTableViewController.swift in Sources */,

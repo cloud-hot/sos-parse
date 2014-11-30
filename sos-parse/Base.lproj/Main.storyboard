@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iWQ-pf-EX6">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friends" id="iWQ-pf-EX6">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iWQ-pf-EX6" id="x2B-bX-KyY">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -53,11 +53,55 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="atx-kq-YoY"/>
-                    <navigationItem key="navigationItem" title="好友" id="g5U-Rc-T53"/>
+                    <navigationItem key="navigationItem" title="好友" id="g5U-Rc-T53">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="L4M-GM-ZUB">
+                            <connections>
+                                <segue destination="0ll-ck-QZY" kind="show" identifier="friend-add" id="Nb0-Uz-gn7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TOz-he-FvP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="-407"/>
+            <point key="canvasLocation" x="1080" y="-405"/>
+        </scene>
+        <!--friends-add-->
+        <scene sceneID="sfy-Fq-dLw">
+            <objects>
+                <tableViewController id="0ll-ck-QZY" userLabel="friends-add" customClass="friendsAddTableViewController" customModule="sos_parse" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bOP-ug-mxH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friends" id="kx8-YE-vBq">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kx8-YE-vBq" id="pOM-Oo-Vfg">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0ll-ck-QZY" id="C0w-N8-T7Z"/>
+                            <outlet property="delegate" destination="0ll-ck-QZY" id="o2Z-ex-od5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="添加" id="2aU-MA-1iI">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="cG0-Qf-6ea">
+                            <connections>
+                                <action selector="cancel:" destination="0ll-ck-QZY" id="QPU-Rv-aim"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="完成" id="2GD-ca-2R2">
+                            <connections>
+                                <action selector="done:" destination="0ll-ck-QZY" id="4B1-pI-4BU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVM-lp-bw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768" y="-403"/>
         </scene>
         <!--login-->
         <scene sceneID="gxI-MZ-gGN">

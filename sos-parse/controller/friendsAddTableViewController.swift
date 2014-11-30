@@ -1,17 +1,30 @@
 //
-//  friendsTableViewController.swift
+//  friendsAddTableViewController.swift
 //  sos-parse
 //
-//  Created by wenjiez on 14/11/20.
+//  Created by wenjiez on 14/11/30.
 //  Copyright (c) 2014年 wenjiez. All rights reserved.
 //
 
 import UIKit
 
-class friendsTableViewController: UITableViewController, addFriendsDelegate {
+protocol addFriendsDelegate: NSObjectProtocol{
+    func addFriendsData(user: PFUser) -> ()
+}
 
-    var friends = [PFUser]()
+class friendsAddTableViewController: UITableViewController {
+
+    @IBAction func cancel(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+
+    @IBAction func done(sender: AnyObject) {
+        delegate?.addFriendsData(PFUser.currentUser())
+        navigationController?.popViewControllerAnimated(true)
+    }
     
+    var delegate: addFriendsDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,24 +45,24 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return friends.count
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 1
+        return 0
     }
 
-
+    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("friends", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel.text = friends[indexPath.row].email
 
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -95,20 +108,5 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    func addFriendsData(user: PFUser) -> () {
-        println("return add user")
-        friends.append(user)
-    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        println("prapare segue")
-        if segue.identifier == "friend-add" {
-            println("segue friend-add")
-            let friendsaddController:friendsAddTableViewController = segue.destinationViewController as friendsAddTableViewController
-            friendsaddController.delegate = self
-        } else if segue.identifier == "login" {
-            println("segue register")
-        }
-    }
 
 }

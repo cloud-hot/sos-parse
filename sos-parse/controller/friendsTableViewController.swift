@@ -14,6 +14,22 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var relation : PFRelation = PFUser.currentUser().relationForKey("KfriendsRelation")
+        relation.query().findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+            if error != nil {
+                // There was an error
+            } else {
+                // objects has all the Posts the current user liked.
+                self.friends = objects as [PFUser]
+                for friend in self.friends {
+                    NSLog("friend.name is \(friend.username)")
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,13 +48,13 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return friends.count
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 1
+        return friends.count
     }
 
 
@@ -46,7 +62,7 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("friends", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel.text = friends[indexPath.row].email
+        cell.textLabel.text = friends[indexPath.row].username
 
         return cell
     }
@@ -97,17 +113,15 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
     */
     
     func addFriendsData(user: PFUser) -> () {
-        println("return add user")
         friends.append(user)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        println("prapare segue")
         if segue.identifier == "friend-add" {
-            println("segue friend-add")
+            NSLog("segue friend-add")
             let friendsaddController:friendsAddTableViewController = segue.destinationViewController as friendsAddTableViewController
             friendsaddController.delegate = self
         } else if segue.identifier == "login" {
-            println("segue register")
+            NSLog("segue register")
         }
     }
 

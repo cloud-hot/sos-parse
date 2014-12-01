@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friends" id="iWQ-pf-EX6">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friends" id="iWQ-pf-EX6" customClass="addFriendsTableViewCell" customModule="sos_parse" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iWQ-pf-EX6" id="x2B-bX-KyY">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -73,12 +73,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="搜索" id="2aT-Lq-9x7">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friends" id="kx8-YE-vBq">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addfriends" rowHeight="44" id="kx8-YE-vBq" customClass="addFriendsTableViewCell" customModule="sos_parse" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kx8-YE-vBq" id="pOM-Oo-Vfg">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h00-LZ-fOy">
+                                            <rect key="frame" x="302" y="11" width="22" height="22"/>
+                                            <connections>
+                                                <action selector="addFriends:" destination="0ll-ck-QZY" eventType="touchUpInside" id="Sx7-Ln-qSM"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="h00-LZ-fOy" id="Qav-KI-Edx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -92,16 +108,14 @@
                                 <action selector="cancel:" destination="0ll-ck-QZY" id="QPU-Rv-aim"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="完成" id="2GD-ca-2R2">
-                            <connections>
-                                <action selector="done:" destination="0ll-ck-QZY" id="4B1-pI-4BU"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="2aT-Lq-9x7" id="9Ay-hA-SN1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVM-lp-bw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1768" y="-403"/>
+            <point key="canvasLocation" x="2108" y="-637"/>
         </scene>
         <!--login-->
         <scene sceneID="gxI-MZ-gGN">

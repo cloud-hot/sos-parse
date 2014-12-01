@@ -12,21 +12,41 @@ protocol addFriendsDelegate: NSObjectProtocol{
     func addFriendsData(user: PFUser) -> ()
 }
 
-class friendsAddTableViewController: UITableViewController {
+class friendsAddTableViewController: UITableViewController, UISearchDisplayDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBAction func addFriends(sender: AnyObject) {
+        var button: UIButton = sender as UIButton
+        delegate?.addFriendsData(friends[button.tag])
+        var relation : PFRelation = PFUser.currentUser().relationForKey("KfriendsRelation")
+        relation.addObject(friends[button.tag])
+        PFUser.currentUser().saveInBackgroundWithBlock { (succeed:Bool, error: NSError!) -> Void in
+            if error != nil {
+            NSLog("add friends to parse error.")
+            }
+            NSLog("add friends \(self.friends[button.tag].username)to parse successfully.")
+        }
+
+        NSLog("button tag is \(button.tag).")
+    }
+    
     @IBAction func cancel(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
 
-    @IBAction func done(sender: AnyObject) {
-        delegate?.addFriendsData(PFUser.currentUser())
-        navigationController?.popViewControllerAnimated(true)
-    }
+//    @IBAction func done(sender: AnyObject) {
+//        delegate?.addFriendsData(PFUser.currentUser())
+//        navigationController?.popViewControllerAnimated(true)
+//    }
     
     var delegate: addFriendsDelegate?
+    var isFiltered: Bool?
+    var friends = [PFUser]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,24 +65,27 @@ class friendsAddTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return friends.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
+        let cell: addFriendsTableViewCell = tableView.dequeueReusableCellWithIdentifier("addfriends", forIndexPath: indexPath) as addFriendsTableViewCell
+        
         // Configure the cell...
-
+        //set the buttons tag to the index path.row
+        cell.button.tag = indexPath.row;
+        cell.textLabel.text = friends[indexPath.row].username
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -108,5 +131,32 @@ class friendsAddTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - SearchBar
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            isFiltered = false
+        } else {
+            isFiltered = true
+            var query = PFUser.query()
+            query.whereKey("username", equalTo: searchText)
+            query.findObjectsInBackgroundWithBlock {
+                (objects: [AnyObject]!, error: NSError!) -> Void in
+                if error == nil {
+                    // The find succeeded.
+                    NSLog("Successfully retrieved \(objects.count) scores.")
+                    if objects.count != 0 {
+                        self.friends = objects as [PFUser]
+                        self.tableView.reloadData()
+                    }
+                    // Do something with the found objects
+                } else {
+                    // Log details of the failure
+                    NSLog("Error: %@ %@", error, error.userInfo!)
+                }
+            }
+
+        }
+    }
 
 }

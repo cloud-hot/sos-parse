@@ -16,6 +16,7 @@ class homeViewController: UITabBarController, UITabBarControllerDelegate {
         case EventIndex = 0
         case FriendsIndex = 1
         case UserIndex = 2
+        case AlertIndex = 3
     }
     
     override func viewDidLoad() {
@@ -82,6 +83,8 @@ class homeViewController: UITabBarController, UITabBarControllerDelegate {
             case TabIndex.UserIndex.rawValue:
                 NSLog("selected user")
                 initUserController(viewController as? userTableViewController)
+            case TabIndex.AlertIndex.rawValue:
+                NSLog("selected alertevent")
             default:
                 NSLog("selected unkonw index")
         }

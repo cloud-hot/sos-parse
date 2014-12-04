@@ -21,7 +21,7 @@ class homeViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTabSubview()
+//        setupTabSubview()
         setupUserSetting()
         self.delegate = self
         

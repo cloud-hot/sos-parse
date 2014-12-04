@@ -8,12 +8,16 @@
 
 import UIKit
 
-class friendsTableViewController: UITableViewController, addFriendsDelegate {
+class friendsTableViewController: UITableViewController{
 
     var friends = [PFUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "addFriend:",
+            name: "addFriends",
+            object: nil)
         
         var relation : PFRelation = PFUser.currentUser().relationForKey("KfriendsRelation")
         relation.query().findObjectsInBackgroundWithBlock {
@@ -62,7 +66,7 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("friends", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel.text = friends[indexPath.row].username
+        cell.textLabel?.text = friends[indexPath.row].username
 
         return cell
     }
@@ -112,14 +116,19 @@ class friendsTableViewController: UITableViewController, addFriendsDelegate {
     }
     */
     
-    func addFriendsData(user: PFUser) -> () {
-        friends.append(user)
+    func addFriend(notification: NSNotification) -> () {
+        if let newUser = notification.object as? PFUser {
+            friends.append(newUser)
+            self.tableView.reloadData()
+            NSLog("recv notification")
+        }
     }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "friend-add" {
             NSLog("segue friend-add")
             let friendsaddController:friendsAddTableViewController = segue.destinationViewController as friendsAddTableViewController
-            friendsaddController.delegate = self
+//            friendsaddController.delegate = self
         } else if segue.identifier == "login" {
             NSLog("segue register")
         }

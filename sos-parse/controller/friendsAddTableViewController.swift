@@ -18,7 +18,8 @@ class friendsAddTableViewController: UITableViewController, UISearchDisplayDeleg
     
     @IBAction func addFriends(sender: AnyObject) {
         var button: UIButton = sender as UIButton
-        delegate?.addFriendsData(friends[button.tag])
+        let newFriend = NSNotification(name: "addFriends",
+            object: friends[button.tag])
         var relation : PFRelation = PFUser.currentUser().relationForKey("KfriendsRelation")
         relation.addObject(friends[button.tag])
         PFUser.currentUser().saveInBackgroundWithBlock { (succeed:Bool, error: NSError!) -> Void in
@@ -26,6 +27,7 @@ class friendsAddTableViewController: UITableViewController, UISearchDisplayDeleg
             NSLog("add friends to parse error.")
             }
             NSLog("add friends \(self.friends[button.tag].username)to parse successfully.")
+            NSNotificationCenter.defaultCenter().postNotification(newFriend)
         }
 
         NSLog("button tag is \(button.tag).")
@@ -81,7 +83,7 @@ class friendsAddTableViewController: UITableViewController, UISearchDisplayDeleg
         // Configure the cell...
         //set the buttons tag to the index path.row
         cell.button.tag = indexPath.row;
-        cell.textLabel.text = friends[indexPath.row].username
+        cell.textLabel?.text = friends[indexPath.row].username
         
         return cell
     }

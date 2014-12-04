@@ -8,12 +8,17 @@
 
 import UIKit
 
-class alertEventTableViewController: UITableViewController, addFriendsDelegate {
+class alertEventTableViewController: UITableViewController {
 
     var friends = [PFUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "addFriend:",
+            name: "addFriends",
+            object: nil)
         
         friends.append(PFUser.currentUser())
         var relation : PFRelation = PFUser.currentUser().relationForKey("KfriendsRelation")
@@ -57,7 +62,7 @@ class alertEventTableViewController: UITableViewController, addFriendsDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("alertevent", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        cell.textLabel.text = friends[indexPath.row].username
+        cell.textLabel?.text = friends[indexPath.row].username
         
         return cell
     }
@@ -107,8 +112,12 @@ class alertEventTableViewController: UITableViewController, addFriendsDelegate {
     }
     */
     
-    func addFriendsData(user: PFUser) -> () {
-        friends.append(user)
+    func addFriend(notification: NSNotification) -> () {
+        if let newUser = notification.object as? PFUser {
+            friends.append(newUser)
+            self.tableView.reloadData()
+            NSLog("recv notification")
+        }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "detailevent" {

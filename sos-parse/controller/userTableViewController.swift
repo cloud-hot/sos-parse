@@ -56,7 +56,7 @@ class userTableViewController: UITableViewController {
 
         var cell = tableView.dequeueReusableCellWithIdentifier("userCell", forIndexPath: indexPath) as UITableViewCell
         
-        cell.textLabel.text = "退出"
+        cell.textLabel?.text = "退出"
 
         return cell
     }

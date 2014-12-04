@@ -65,7 +65,7 @@ class detailEventTableViewController: UITableViewController, postDoneDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("detailevent", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        cell.textLabel.text = eventObject[indexPath.row]["text"] as? String
+        cell.textLabel?.text = eventObject[indexPath.row]["text"] as? String
         
         return cell
     }

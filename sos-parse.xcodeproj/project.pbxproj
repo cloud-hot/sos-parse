@@ -14,6 +14,7 @@
 		4262225E1A18D29000ADA33B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4262225D1A18D29000ADA33B /* Images.xcassets */; };
 		426222611A18D29000ADA33B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4262225F1A18D29000ADA33B /* LaunchScreen.xib */; };
 		4262226D1A18D29000ADA33B /* sos_parseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4262226C1A18D29000ADA33B /* sos_parseTests.swift */; };
+		427B55041A30A7E500BE089B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427B55021A309C7A00BE089B /* MapKit.framework */; };
 		4285402C1A1E222200F59991 /* eventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285402B1A1E222200F59991 /* eventTableViewController.swift */; };
 		4285402E1A1E223600F59991 /* friendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285402D1A1E223600F59991 /* friendsTableViewController.swift */; };
 		428540301A1E226C00F59991 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285402F1A1E226C00F59991 /* homeViewController.swift */; };
@@ -49,6 +50,7 @@
 		426222661A18D29000ADA33B /* sos-parseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "sos-parseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4262226B1A18D29000ADA33B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4262226C1A18D29000ADA33B /* sos_parseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sos_parseTests.swift; sourceTree = "<group>"; };
+		427B55021A309C7A00BE089B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4285402B1A1E222200F59991 /* eventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventTableViewController.swift; sourceTree = "<group>"; };
 		4285402D1A1E223600F59991 /* friendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = friendsTableViewController.swift; sourceTree = "<group>"; };
 		4285402F1A1E226C00F59991 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427B55041A30A7E500BE089B /* MapKit.framework in Frameworks */,
 				4F561ABCDD11A9322EB5C87E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +165,7 @@
 		9C551FF545B8987C2353CB2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				427B55021A309C7A00BE089B /* MapKit.framework */,
 				2654443C222948CE916611B4 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -227,6 +231,11 @@
 				TargetAttributes = {
 					426222501A18D28F00ADA33B = {
 						CreatedOnToolsVersion = 6.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					426222651A18D29000ADA33B = {
 						CreatedOnToolsVersion = 6.1;

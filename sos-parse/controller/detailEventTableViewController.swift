@@ -69,6 +69,14 @@ class detailEventTableViewController: UITableViewController, postDoneDelegate {
         
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+        let singleEventController: singleEventViewController = storyBoard.instantiateViewControllerWithIdentifier("singleEvent") as singleEventViewController
+        
+        singleEventController.eventObject = eventObject[indexPath.row]
+        self.navigationController?.pushViewController(singleEventController, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -109,9 +109,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S7f-JN-5ZA" id="03C-22-Ron">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="k9I-Nv-fXG" kind="show" id="n3t-E6-7eH"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -177,7 +174,7 @@
         <!--Title-->
         <scene sceneID="UkD-cG-Wld">
             <objects>
-                <viewController id="k9I-Nv-fXG" customClass="singleEventViewController" customModule="sos_parse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="singleEvent" id="k9I-Nv-fXG" customClass="singleEventViewController" customModule="sos_parse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kFH-hm-d9w"/>
                         <viewControllerLayoutGuide type="bottom" id="qVX-tW-y2j"/>
@@ -186,8 +183,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YEa-9O-evZ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="257"/>
+                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjw-RZ-3Jg">
-                                <rect key="frame" x="0.0" y="64" width="600" height="92"/>
+                                <rect key="frame" x="0.0" y="321" width="600" height="92"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -202,10 +202,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="eventLab" destination="Rjw-RZ-3Jg" id="KtH-kA-2tI"/>
+                        <outlet property="mapView" destination="YEa-9O-evZ" id="15A-wB-LtJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odO-to-lr2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2567" y="66"/>
+            <point key="canvasLocation" x="2555" y="18"/>
         </scene>
         <!--friends-add-->
         <scene sceneID="sfy-Fq-dLw">

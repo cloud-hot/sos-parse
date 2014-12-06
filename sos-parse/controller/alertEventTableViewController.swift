@@ -20,7 +20,6 @@ class alertEventTableViewController: UITableViewController {
             name: "addFriends",
             object: nil)
         
-        friends.append(PFUser.currentUser())
         var relation : PFRelation = PFUser.currentUser().relationForKey("KfriendsRelation")
         relation.query().findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
@@ -48,23 +47,42 @@ class alertEventTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        return 2
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return friends.count
+        if section == 0 {
+            return 1
+        } else {
+            return friends.count
+        }
     }
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let section = indexPath.section
         let cell = tableView.dequeueReusableCellWithIdentifier("alertevent", forIndexPath: indexPath) as UITableViewCell
         
         // Configure the cell...
-        cell.textLabel?.text = friends[indexPath.row].username
-        
+        if section == 0 {
+            cell.textLabel?.text = PFUser.currentUser().username
+        } else {
+            cell.textLabel?.text = friends[indexPath.row].username
+        }
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "自己"
+        } else {
+            return "好友"
+        }
     }
     
     /*

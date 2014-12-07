@@ -5,6 +5,6 @@ swift demo for test parse API
 
 Build Step:
 
-  cd ./sos-parse
-  pod install
-  Open sos-parse.xcworkspace with Xcode
+1. cd ./sos-parse
+2. pod install
+3. Open sos-parse.xcworkspace with Xcode

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		423690771A217F6400414043 /* userTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423690761A217F6400414043 /* userTableViewController.swift */; };
 		426222571A18D28F00ADA33B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426222561A18D28F00ADA33B /* AppDelegate.swift */; };
-		426222591A18D28F00ADA33B /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426222581A18D28F00ADA33B /* loginViewController.swift */; };
 		4262225C1A18D29000ADA33B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4262225A1A18D28F00ADA33B /* Main.storyboard */; };
 		4262225E1A18D29000ADA33B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4262225D1A18D29000ADA33B /* Images.xcassets */; };
 		426222611A18D29000ADA33B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4262225F1A18D29000ADA33B /* LaunchScreen.xib */; };
@@ -25,6 +24,7 @@
 		42D36FDD1A2DFF5400BE8E58 /* detailEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D36FDC1A2DFF5400BE8E58 /* detailEventTableViewController.swift */; };
 		42D36FE11A2DFFA000BE8E58 /* singleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D36FE01A2DFFA000BE8E58 /* singleEventViewController.swift */; };
 		42EB36211A3425C100E1C0B7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB36201A3425C100E1C0B7 /* CoreLocation.framework */; };
+		42EB36261A34923600E1C0B7 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EB36251A34923600E1C0B7 /* loginViewController.swift */; };
 		4F561ABCDD11A9322EB5C87E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2654443C222948CE916611B4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,6 @@
 		426222511A18D28F00ADA33B /* sos-parse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sos-parse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		426222551A18D28F00ADA33B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		426222561A18D28F00ADA33B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		426222581A18D28F00ADA33B /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = loginViewController.swift; path = ../loginViewController.swift; sourceTree = "<group>"; };
 		4262225B1A18D28F00ADA33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4262225D1A18D29000ADA33B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		426222601A18D29000ADA33B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		42D36FDC1A2DFF5400BE8E58 /* detailEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailEventTableViewController.swift; sourceTree = "<group>"; };
 		42D36FE01A2DFFA000BE8E58 /* singleEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleEventViewController.swift; sourceTree = "<group>"; };
 		42EB36201A3425C100E1C0B7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		42EB36251A34923600E1C0B7 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		7930DF9431EB1D9D0972CE5B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8BF621121A3D1C31B3C79F8B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,11 +150,11 @@
 		428540291A1E216700F59991 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				42EB36251A34923600E1C0B7 /* loginViewController.swift */,
 				42C3EB381A2F41B6000429FB /* postEventViewController.swift */,
 				42D36FE01A2DFFA000BE8E58 /* singleEventViewController.swift */,
 				42D36FDC1A2DFF5400BE8E58 /* detailEventTableViewController.swift */,
 				42BF712D1A2C9E65002425A3 /* addFriendsTableViewCell.swift */,
-				426222581A18D28F00ADA33B /* loginViewController.swift */,
 				4285402B1A1E222200F59991 /* eventTableViewController.swift */,
 				4285402D1A1E223600F59991 /* friendsTableViewController.swift */,
 				4285402F1A1E226C00F59991 /* homeViewController.swift */,
@@ -328,11 +328,11 @@
 				42BF712E1A2C9E65002425A3 /* addFriendsTableViewCell.swift in Sources */,
 				4285402C1A1E222200F59991 /* eventTableViewController.swift in Sources */,
 				42C3EB391A2F41B6000429FB /* postEventViewController.swift in Sources */,
-				426222591A18D28F00ADA33B /* loginViewController.swift in Sources */,
 				4285402E1A1E223600F59991 /* friendsTableViewController.swift in Sources */,
 				428540301A1E226C00F59991 /* homeViewController.swift in Sources */,
 				42D36FDB1A2DFE7200BE8E58 /* alertEventTableViewController.swift in Sources */,
 				42D36FE11A2DFFA000BE8E58 /* singleEventViewController.swift in Sources */,
+				42EB36261A34923600E1C0B7 /* loginViewController.swift in Sources */,
 				42D36FDD1A2DFF5400BE8E58 /* detailEventTableViewController.swift in Sources */,
 				423690771A217F6400414043 /* userTableViewController.swift in Sources */,
 				426222571A18D28F00ADA33B /* AppDelegate.swift in Sources */,

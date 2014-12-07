@@ -74,6 +74,7 @@ class detailEventTableViewController: UITableViewController, postDoneDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let singleEventController: singleEventViewController = storyBoard.instantiateViewControllerWithIdentifier("singleEvent") as singleEventViewController
         
+        NSLog("goto singleEvent")
         singleEventController.eventObject = eventObject[indexPath.row]
         self.navigationController?.pushViewController(singleEventController, animated: true)
     }

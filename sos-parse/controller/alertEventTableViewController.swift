@@ -141,7 +141,11 @@ class alertEventTableViewController: UITableViewController {
         if segue.identifier == "detailevent" {
             NSLog("segue detailevent")
             let detaileventController:detailEventTableViewController = segue.destinationViewController as detailEventTableViewController
-            detaileventController.eventUser = friends[self.tableView.indexPathForSelectedRow()!.row]
+            if self.tableView.indexPathForSelectedRow()!.section == 0 {
+                detaileventController.eventUser = PFUser.currentUser()
+            } else {
+                detaileventController.eventUser = friends[self.tableView.indexPathForSelectedRow()!.row]
+            }
         } else if segue.identifier == "login" {
             NSLog("segue register")
         }

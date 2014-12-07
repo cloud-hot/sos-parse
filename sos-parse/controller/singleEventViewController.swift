@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class singleEventViewController: UIViewController {
 
@@ -31,8 +32,19 @@ class singleEventViewController: UIViewController {
         )
         // 2
         let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: true)
+        if let lt = eventObject?["location"] as? PFGeoPoint {
+            let coordinate = CLLocationCoordinate2D(
+                latitude: lt.latitude,
+                longitude: lt.longitude
+            )
+
+            let region = MKCoordinateRegion(center: coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+            NSLog("latitude is \(lt.latitude), longitude is \(lt.longitude)")
+        } else {
+            let region = MKCoordinateRegion(center: location, span: span)
+            mapView.setRegion(region, animated: true)
+        }
         
         //3
         let annotation = MKPointAnnotation()
